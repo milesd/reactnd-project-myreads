@@ -1,8 +1,11 @@
+import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Book extends Component {
   render() {
     const { book, onChangeShelf } = this.props
+    // console.log(`Shelf: ${book.shelf}`)
+    // if(!book.shelf) book.shelf = 'none';
     return (
       <div className="book">
         <div className="book-top">
@@ -18,14 +21,18 @@ class Book extends Component {
           </div>
         </div>
         <div className="book-title">{book.title}</div>
-        {/* <div className="book-authors">
-          {book.authors.map((author, index) =>
+        <div className="book-authors">
+          {/* {book.authors.map((author, index) =>
             <span key={index}>{author}</span>
-          )}
-        </div> */}
+          )} */}
+        </div>
       </div>
     )
   }
 }
-
+// Shelf.propTypes = {
+//   name: PropTypes.string,
+//   books: PropTypes.array,
+//   onChangeShelf: PropTypes.func
+// };
 export default Book;
