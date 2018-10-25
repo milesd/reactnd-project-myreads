@@ -33,23 +33,33 @@ class BooksApp extends React.Component {
   ]
   constructor() {
     super();
-    this.callAjax = debounce(500, this.callAjax);
-  }
-  printChange(e) {
-    this.callAjax(e.target.value);
+    // this.callAjax = debounce(500, this.callAjax);
+    this.updateQuery = debounce(500, this.updateQuery);
+    // this.getAllBooks();
   }
   callAjax(value) {
     console.log('value :: ', value);
     // call ajax
     this.updateQuery(value);
   }
-  componentDidMount() {
-    // BooksAPI.getAll().then((books) => console.log(books));
+  getAllBooks = () => {
     BooksAPI.getAll().then((books) => this.setState({
       books: books
     }));
   }
-
+  // Could be made more generic, e.g. updateBook if we were changing 
+  // some other property like a rating.
+  changeShelf = (moved_book, shelf) => {
+    BooksAPI.update({ id: moved_book.id }, shelf).then((books) => {
+      const arr1 = this.state.books.filter(book => book.id !== moved_book.id);
+      moved_book.shelf = shelf;
+      return this.setState({ books: [...arr1, moved_book]}) //&& this.forceUpdate();
+    })
+  }
+  // Search methods
+  updateQueryString(e) {
+    this.callAjax(e.target.value);
+  }
   updateQuery = (query) => {
     console.log(`query: ${query} (${query.length})`)
 
@@ -64,6 +74,7 @@ class BooksApp extends React.Component {
         query: query.trim()
       }) : this.setState({
         results: results,
+        // results: results.filter(book => book.shelf !== 'none'),
         query: query.trim()
       }));
     }
@@ -71,22 +82,18 @@ class BooksApp extends React.Component {
   clearQuery = () => {
     this.updateQuery('')
   }
-
-  // Could be made more generic, e.g. updateBook if we were changing 
-  // some other property like a rating.
-  changeShelf = (id, shelf) => {
-    console.log(id, shelf);
-    BooksAPI.update({ id: id }, shelf).then((books) => {
-      BooksAPI.getAll().then((books) => this.setState({ books: books }))
-    })
+  componentDidMount() {
+    // BooksAPI.getAll().then((books) => console.log(books));
+    BooksAPI.getAll().then((books) => this.setState({
+      books: books
+    }));
+    console.log(this.state.books);
   }
-
   render() {
     const { query, books, results } = this.state
 
     return (
       <div className="app">
-
         <Route exact path='/' render={() => (
           <div className="list-books">
             <div className="list-books-title">
@@ -104,8 +111,10 @@ class BooksApp extends React.Component {
         )} />
         <Route path='/search' render={() => (
           <div>
-            <input type="text" onKeyUp={this.printChange.bind(this)} />
-            <SearchBooks query={query} onUpdateQuery={this.updateQuery} onChangeShelf={this.changeShelf} results={results} />
+            {/* <input type="text" onKeyUp={this.updateQueryS tring.bind(this)} /> */}
+            {/* <SearchBooks query={query} onUpdateQuery={this.updateQueryString} onChangeShelf={this.changeShelf} results={results} /> */}
+            <SearchBooks query={query} onUpdateQuery={this.updateQueryString.bind(this)} onChangeShelf={this.changeShelf} results={results} />
+            {/* <SearchBooks query={query} onUpdateQuery={this.updateQuery} onChangeShelf={this.changeShelf} results={results} /> */}
           </div>
         )} />
       </div>

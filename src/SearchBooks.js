@@ -3,21 +3,15 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom'
 import Book from './Book.js'
 
-class SearchBooks extends Component {
+const SearchBooks = ({query, results, onUpdateQuery, onChangeShelf}) => {
+  return (
+// class SearchBooks extends Component {
 
-  printChange(e) {
-    this.callAjax(e.target.value);
-  }
-  callAjax(value) {
-    console.log('value :: ', value);
-    // call ajax
-    this.updateQuery(value);
-  }
-  
-  render() {
-    const { query, results, onUpdateQuery, onChangeShelf } = this.props;
-    console.log(results);
-    return (
+
+  // render() {
+    // const { query, results, onUpdateQuery, onChangeShelf } = this.props;
+    // console.log(results);
+    // return (
       <div className="search-books">
         <div className="search-books-bar">
           <Link className="close-search" to='/'>Close</Link>
@@ -35,7 +29,9 @@ class SearchBooks extends Component {
               type='text'
               placeholder="Search by title or author"
               value={query}
-              onChange={(event) => onUpdateQuery(event.target.value)}
+              // onChange={(event) => onUpdateQuery(event.target.value)}
+              // onChange={onUpdateQuery.bind(this)}
+              onChange={onUpdateQuery}
             />
           </div>
         </div>
@@ -43,6 +39,7 @@ class SearchBooks extends Component {
           <ol className="books-grid">
             {results.map((book) => (
               <li key={book.id}>
+                {/* <Book book={book} onChangeShelf={(event) => onChangeShelf(book, event.target.value)} /> */}
                 <Book book={book} onChangeShelf={onChangeShelf} />
               </li>
             ))}
@@ -51,12 +48,12 @@ class SearchBooks extends Component {
       </div>
     )
   }
-}
+// }
 
-// SearchBooks.propTypes = {
-//   query: PropTypes.string,
-//   results: PropTypes.array,
-//   onUpdateQuery: PropTypes.func, 
-//   onChangeShelf: PropTypes.func
-// };
+SearchBooks.propTypes = {
+  query: PropTypes.string,
+  results: PropTypes.array,
+  onUpdateQuery: PropTypes.func, 
+  onChangeShelf: PropTypes.func
+};
 export default SearchBooks;

@@ -3,11 +3,13 @@ import React, { Component } from 'react';
 
 import Book from './Book.js'
 
-class Shelf extends Component {
-  render() {
-    const { name, books, onChangeShelf } = this.props;
+const Shelf = ({name, books, onChangeShelf}) => {
+  return (
+// class Shelf extends Component {
+  // render() {
+    // const { name, books, onChangeShelf } = this.props;
     // console.log(books);
-    return (
+    // return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">
           {name.replace(/([A-Z]+)*([A-Z][a-z])/g, "$1 $2")}
@@ -24,7 +26,7 @@ class Shelf extends Component {
       </div>
     )
   }
-}
+// }
 
 // Shelf.propTypes = {
 //   name: PropTypes.string,
