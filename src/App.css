@@ -172,3 +172,29 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+/* book shelf chip - ugly but functional */
+.book-shelf-chip {
+  /* border-color: #fff; */
+  color: #fff;
+  position: absolute;
+  left: -11px;
+  /* border-style: solid; */
+  top: -10px;
+  border-radius: 7px;
+  padding-bottom: 5px;
+  padding-top: 3px;
+  /* width: 40px; */
+  /* height: 40px; */
+  padding-left: 7px;
+  padding-right: 7px;
+  background: #1269D3;
+  font-size: 0.75em;
+  font-style: bold;
+  /* background-image: url(/static/media/arrow-drop-down.78c6f53b.svg); */
+  background-repeat: no-repeat;
+  background-position: center;
+  /* background-size: 20px; */
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
