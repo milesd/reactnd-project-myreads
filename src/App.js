@@ -1,25 +1,9 @@
 import React from 'react'
 import { Link, Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
-// import { debounce } from 'throttle-debounce';
-
 import './App.css'
-// My local changes 
 import Shelf from './Shelf.js'
 import SearchBooks from './SearchBooks.js'
-
-// const shelf1 = [{name: 'name1', shelf: 'a'},{name: 'name2', shelf: 'a'}];
-// const shelf2 = [{name: 'name3', shelf: 'b'},{name: 'name4', shelf: 'b'}];
-// const allBooks = [...shelf1, ...shelf2];
-
-// const filter = books => shelf => books.filter(b => {
-//   return b.shelf === shelf;
-// });
-
-// const filterBy = filter(allBooks);
-// const booksOnShelf = filterBy('b');
-
-
 
 class BooksApp extends React.Component {
   state = {

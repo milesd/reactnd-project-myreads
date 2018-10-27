@@ -9,7 +9,10 @@ const SearchResults = ({ query, results, onUpdateQuery, onChangeShelf }) => {
   return (
     <div className="search-books-results">
       <div className="search-books-count">
-        {results.length} match{results.length==1?'':'es'}
+        {/* Silly pluralization */}
+        {query.length > 0 && (
+          `${results.length} match${results.length === 1 ?'':'es'}`
+        )}
       </div>
       <ol className="books-grid">
         {results.map((book) => (
@@ -38,7 +41,7 @@ const SearchBooks = ({ query, results, onUpdateQuery, onChangeShelf }) => {
           />
         </div>
       </div>
-      <SearchResults results={results} onChangeShelf={onChangeShelf} />
+      <SearchResults query={query} results={results} onChangeShelf={onChangeShelf} />
     </div>
   )
 }

@@ -6,6 +6,7 @@ const Shelf = ({ shelfName, books, onChangeShelf }) => {
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">
+        {/* Repeat of code in Book, really. ShelfTitle component? */}
         {shelfName.charAt(0).toUpperCase() + shelfName.replace(/([A-Z]+)*([A-Z][a-z])/g, "$1 $2").slice(1)}
       </h2>    
       <div className="bookshelf-books">

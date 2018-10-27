@@ -198,3 +198,9 @@ body, .app {
   -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
+
+.search-books-count {
+  padding-bottom: 20px;
+  padding-left: 20px;
+  color: #888;
+}

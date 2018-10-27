@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Book = ({ book, onChangeShelf, shelfIndicator }) => {
-  // Set shelf if not present.
+  // Set shelf -- not present in the search results.
   if (!book.shelf) book.shelf = 'none';
   // Handle missing thumbnails -- maybe point to generic image?
   const thumbnail_url = book.imageLinks && book.imageLinks.thumbnail ? `url(${book.imageLinks.thumbnail})` : 'none';
@@ -15,9 +15,10 @@ const Book = ({ book, onChangeShelf, shelfIndicator }) => {
     <div className="book">
       <div className="book-top">
         <div className="book-cover" style={coverStyle}></div>
-        {/* Display a chip indicating that the book in a search result is already on a shelf  */}
-        { shelfIndicator && book.shelf!=='none' && (
+        {/* Display a chip indicating that the book in a search result is already on a shelf. Should be a separate component.  */}
+        { shelfIndicator && book.shelf !== 'none' && (
           <div className="book-shelf-chip">
+            {/* Ugly hack to make the shelf titles capitalized. */}
             {book.shelf.charAt(0).toUpperCase() + book.shelf.replace(/([A-Z]+)*([A-Z][a-z])/g, "$1 $2").slice(1)}
           </div>
         ) }

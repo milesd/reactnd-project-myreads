@@ -1,6 +1,8 @@
 # MyReads Project
 
-Based on the starter git repo.
+Based on the starter git repo. Hope we're not graded on looks. :)
+
+Miles Davis <miles@cs.stanford.edu>
 
 ## TL;DR
 
